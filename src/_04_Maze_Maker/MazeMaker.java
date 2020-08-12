@@ -22,7 +22,7 @@ public class MazeMaker{
 		maze = new Maze(width, height);
 		
 		//4. select a random cell to start
-		
+		new Maze().cells[randGen.nextInt(width)][randGen.nextInt(height)].selextNextPath;
 		
 		//5. call selectNextPath method with the randomly selected cell
 		
