@@ -3,7 +3,7 @@ import java.awt.Graphics;
 
 public class Maze {
 	//1. Create a 2D array of cells. Don't initialize it.
-	public Cell[][] cells;
+	public static Cell[][] cells;
 	private int width;
 	private int height;
 
