@@ -41,12 +41,87 @@
 
 package extras.the_wrong_way_cow;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class TheWrongWayCow {
 
     public static int[] findWrongWayCow(final char[][] field) {
         // Fill in the code to return the x,y coordinate position of the
         // head (letter 'c') of the wrong way cow!
-        
+    	int north = 0;
+    	int south = 0;
+    	int west = 0;
+    	int east = 0;
+    	HashMap<String, int[]> cows = new HashMap<String, int[]>();
+    	//Check Facing North
+    	for(int i = 0; i < field.length; i++) {
+    		for(int j = 0; j < field.length; j++) {
+    			if(field[i][j] == 'c') {
+    				if(field[i+1][j] == 'o') {
+    					if(field[i+2][j] == 'w') {
+    						north++;
+    						int[] northCow = {i, j};
+    						cows.put("north cow", northCow);
+    					}
+    				}
+    			}
+    		}
+    	}
+    	//Check Facing South
+    	for(int i = 0; i < field.length; i++) {
+    		for(int j = 0; j < field.length; j++) {
+    			if(field[i][j] == 'c') {
+    				if(field[i-1][j] == 'o') {
+    					if(field[i-2][j] == 'w') {
+    						south++;
+    						int[] southCow = {i, j};
+    						cows.put("south cow", southCow);
+    					}
+    				}
+    			}
+    		}
+    	}
+    	//Check Facing West
+    	for(int i = 0; i < field.length; i++) {
+    		for(int j = 0; j < field.length; j++) {
+    			if(field[i][j] == 'c') {
+    				if(field[i][j+1] == 'o') {
+    					if(field[i][j+2] == 'w') {
+    						west++;
+    						int[] westCow = {i, j};
+    						cows.put("west cow", westCow);
+    					}
+    				}
+    			}
+    		}
+    	}
+    	//Check Facing East
+    	for(int i = 0; i < field.length; i++) {
+    		for(int j = 0; j < field.length; j++) {
+    			if(field[i][j] == 'c') {
+    				if(field[i][j-1] == 'o') {
+    					if(field[i][j-2] == 'w') {
+    						east++;
+    						int[] eastCow = {i, j};
+    						cows.put("east cow", eastCow);
+    					}
+    				}
+    			}
+    		}
+    	}
+    	if(north == 1) {
+    		return cows.get("north cow");
+    	}
+    	else if(south == 1) {
+    		return cows.get("south cow");
+    	}
+    	else if(west == 1) {
+    		return cows.get("west cow");
+    	}
+    	else if(east == 1) {
+    		return cows.get("east cow");
+    	}
         return null;
     }
 }
