@@ -61,48 +61,37 @@ public class TheWrongWayCow {
     				if(field[i+1][j] == 'o') {
     					if(field[i+2][j] == 'w') {
     						north++;
+    						System.out.println("Confirmed north cow " + north);
     						int[] northCow = {i, j};
     						cows.put("north cow", northCow);
     					}
     				}
-    			}
-    		}
-    	}
+    	//Check Facing West
+    				else if(field[i][j+1] == 'o') {
+    					if(field[i][j+2] == 'w') {
+    						west++;
+    						System.out.println("Confirmed west cow " + west);
+    						int[] westCow = {i, j};
+    						cows.put("west cow", westCow);
+    						System.out.println(westCow);
+    						System.out.println(cows.get("west cow"));
+    					}
+    				}
     	//Check Facing South
-    	for(int i = 0; i < field.length; i++) {
-    		for(int j = 0; j < field.length; j++) {
-    			if(field[i][j] == 'c') {
-    				if(field[i-1][j] == 'o') {
+    				else if(field[i-1][j] == 'o') {
     					if(field[i-2][j] == 'w') {
     						south++;
+    						System.out.println("Confirmed south cow " + south);
     						int[] southCow = {i, j};
     						cows.put("south cow", southCow);
     					}
     				}
-    			}
-    		}
-    	}
-    	//Check Facing West
-    	for(int i = 0; i < field.length; i++) {
-    		for(int j = 0; j < field.length; j++) {
-    			if(field[i][j] == 'c') {
-    				if(field[i][j+1] == 'o') {
-    					if(field[i][j+2] == 'w') {
-    						west++;
-    						int[] westCow = {i, j};
-    						cows.put("west cow", westCow);
-    					}
-    				}
-    			}
-    		}
-    	}
+    		
     	//Check Facing East
-    	for(int i = 0; i < field.length; i++) {
-    		for(int j = 0; j < field.length; j++) {
-    			if(field[i][j] == 'c') {
-    				if(field[i][j-1] == 'o') {
+    				else if(field[i][j-1] == 'o') {
     					if(field[i][j-2] == 'w') {
     						east++;
+    						System.out.println("Confirmed east cow " + east);
     						int[] eastCow = {i, j};
     						cows.put("east cow", eastCow);
     					}
@@ -111,15 +100,19 @@ public class TheWrongWayCow {
     		}
     	}
     	if(north == 1) {
+    		System.out.println(cows.get("north cow"));
     		return cows.get("north cow");
     	}
     	else if(south == 1) {
+    		System.out.println(cows.get("south cow"));
     		return cows.get("south cow");
     	}
     	else if(west == 1) {
+    		System.out.println(cows.get("west cow"));
     		return cows.get("west cow");
     	}
     	else if(east == 1) {
+    		System.out.println(cows.get("east cow"));
     		return cows.get("east cow");
     	}
         return null;
