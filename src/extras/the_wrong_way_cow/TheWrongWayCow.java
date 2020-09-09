@@ -41,7 +41,6 @@
 
 package extras.the_wrong_way_cow;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class TheWrongWayCow {
@@ -56,49 +55,97 @@ public class TheWrongWayCow {
     	HashMap<String, int[]> cows = new HashMap<String, int[]>();
     	//Check Facing North
     	for(int i = 0; i < field.length; i++) {
-    		for(int j = 0; j < field.length; j++) {
+    		for(int j = 0; j < field[0].length; j++) {
     			if(field[i][j] == 'c') {
-    				if(field[i+1][j] == 'o') {
+    				if(i+1  < field.length && field[i+1][j] == 'o') {
     					if(field[i+2][j] == 'w') {
     						north++;
     						System.out.println("Confirmed north cow " + north);
-    						int[] northCow = {i, j};
+    						int[] northCow = {j, i};
     						cows.put("north cow", northCow);
+    						if(south > 1 || west > 1 || east > 1 && north == 1) {
+    							return northCow;
+    						}
+    						else if(north > 1 && west == 1) {
+    							return cows.get("west cow");
+    						}
+    						else if(north > 1 && south == 1) {
+    							return cows.get("south cow");
+    						}
+    						else if(north > 1 && east == 1) {
+    							return cows.get("east cow");
+    						}
     					}
     				}
     	//Check Facing West
-    				else if(field[i][j+1] == 'o') {
+    				else if(j+1 < field[0].length && field[i][j+1] == 'o') {
     					if(field[i][j+2] == 'w') {
     						west++;
     						System.out.println("Confirmed west cow " + west);
-    						int[] westCow = {i, j};
+    						int[] westCow = {j, i};
     						cows.put("west cow", westCow);
-    						System.out.println(westCow);
-    						System.out.println(cows.get("west cow"));
-    					}
+    						if(south > 1 || north > 1 || east > 1 && west == 1) {
+    							return westCow;
+    						}
+    						else if(west > 1 && north == 1) {
+    							return cows.get("north cow");
+    						}
+    						else if(west > 1 && south == 1) {
+    							return cows.get("south cow");
+    						}
+    						else if(west > 1 && east == 1) {
+    							return cows.get("east cow");
+    						}
+    							}
     				}
     	//Check Facing South
-    				else if(field[i-1][j] == 'o') {
+    				else if(i-1 > 0 && field[i-1][j] == 'o') {
     					if(field[i-2][j] == 'w') {
     						south++;
     						System.out.println("Confirmed south cow " + south);
-    						int[] southCow = {i, j};
+    						int[] southCow = {j, i};
     						cows.put("south cow", southCow);
+    						if(north > 1 || west > 1 || east > 1 && south == 1) {
+    							return southCow;
+    						}
+    						else if(south > 1 && north == 1) {
+    							return cows.get("north cow");
+    						}
+    						else if(south > 1 && east == 1) {
+    							return cows.get("east cow");
+    						}
+    						else if(south > 1 && west == 1) {
+    							return cows.get("west cow");
+    						}
     					}
     				}
     		
     	//Check Facing East
-    				else if(field[i][j-1] == 'o') {
+    				else if(j > field.length-1 && field[i][j-1] == 'o') {
+    					System.out.println("East yes");
     					if(field[i][j-2] == 'w') {
     						east++;
     						System.out.println("Confirmed east cow " + east);
-    						int[] eastCow = {i, j};
+    						int[] eastCow = {j, i};
     						cows.put("east cow", eastCow);
+    						if(south > 1 || west > 1 || north > 1 && east == 1) {
+    							return eastCow;
+    						}
+    						else if(east > 1 && north == 1) {
+    							return cows.get("north cow");
+    						}
+    						else if(east > 1 && south == 1) {
+    							return cows.get("south cow");
+    						}
+    						else if(east > 1 && west == 1) {
+    							return cows.get("west cow");
+    						}
     					}
     				}
     			}
     		}
     	}
+    	
     	if(north == 1) {
     		System.out.println(cows.get("north cow"));
     		return cows.get("north cow");
@@ -115,6 +162,8 @@ public class TheWrongWayCow {
     		System.out.println(cows.get("east cow"));
     		return cows.get("east cow");
     	}
+    	
         return null;
     }
+
 }
