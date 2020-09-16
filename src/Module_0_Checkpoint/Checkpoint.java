@@ -11,6 +11,7 @@ public class Checkpoint {
 				array[i][j] = randy.nextInt(100);
 			}
 		}
+		
 		printArray(array);
 	}
 	
