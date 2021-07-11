@@ -17,7 +17,7 @@ public class GridPanel extends JPanel{
 	private int cols;
 	
 	//1. Create a 2D array of pixels. Do not initialize it yet.
-	Pixel[][] pixels; 
+	static Pixel[][] pixels; 
 	private Color color;
 	
 	public GridPanel(int w, int h, int r, int c) {
