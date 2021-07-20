@@ -17,11 +17,12 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 	ColorSelectionPanel csp;
 	public Color ree;
 	private JButton save;
-	public saver[][];
+	public Pixel[][] saver;
 	
 	public void start() {
 		gip = new GridInputPanel(this);	
 		save = new JButton();
+		save.setText("Save");
 		save.addActionListener(this);
 		window = new JFrame("Pixel Art");
 		window.setLayout(new FlowLayout());
@@ -76,8 +77,12 @@ public class PixelArtMaker implements MouseListener, ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
+		saver = GridPanel.pixels;
 		for(int i = 0; i < GridPanel.pixels.length; i++) {
-			
+			for(int j = 0; j < GridPanel.pixels.length; j++) {
+				saver[i][j].color = GridPanel.pixels[i][j].color;
+				GridPanel.pixels[i][j].color = Color.WHITE;
+			}
 		}
 	}
 }
